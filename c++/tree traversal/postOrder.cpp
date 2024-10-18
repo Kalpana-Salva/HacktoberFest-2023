@@ -1,5 +1,7 @@
 #include <iostream>
 
+using namespace std;
+
 // Definition for a binary tree node
 struct TreeNode {
     int val;
@@ -20,7 +22,17 @@ void postOrderTraversal(TreeNode* root) {
     postOrderTraversal(root->right);
 
     // Visit the current node
-    std::cout << root->val << " ";
+    cout << root->val << " ";
+}
+
+// Function to deallocate the tree nodes
+void deleteTree(TreeNode* root) {
+    if (root == nullptr) {
+        return;
+    }
+    deleteTree(root->left);  // Corrected function calls
+    deleteTree(root->right); // Corrected function calls
+    delete root;             // Free the current node
 }
 
 int main() {
@@ -32,6 +44,11 @@ int main() {
     root->left->right = new TreeNode(5);
 
     // Perform post-order traversal
-    std::cout << "Post-Order Traversal: ";
+    cout << "Post-Order Traversal: ";
     postOrderTraversal(root);
-    std::
+    cout << endl;  // Print a new line after the traversal output
+
+    // Deallocate the tree nodes
+    deleteTree(root);
+    return 0;
+}
