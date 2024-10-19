@@ -36,7 +36,12 @@ int main() {
     preOrderTraversal(root);
     std::cout << std::endl;
 
-    // Clean up memory (not shown in the code)
+    // Clean up memory
+    delete root->left->left;   // Delete left child of left node
+    delete root->left->right;  // Delete right child of left node
+    delete root->left;         // Delete left node
+    delete root->right;        // Delete right node
+    delete root;               // Delete root node
 
     return 0;
 }
